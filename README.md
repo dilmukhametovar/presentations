@@ -1,2 +1,2 @@
-# presenations
+# presentations
 web app for presentations
