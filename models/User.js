@@ -6,17 +6,15 @@ const presSchema = mongoose.Schema({
     name: {
         type: String,
         required: true,
-        unique: true
     }
 });
 
 const userSchema = new Schema({
     username: {
         type: String,
-        required: true,
-        unique: true
+        required: true
     },
-    password: {
+    passwordHash: {
         type: String,
         required: true
     },

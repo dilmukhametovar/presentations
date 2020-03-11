@@ -1,7 +1,13 @@
+const bcrypt = require('bcrypt');
 const User = require('../models/User');
 
-function createUser(user) {
-    let newUser = new User(user);
+function createUser(username , password) {
+    let passwordHash = bcrypt.hashSync(password, 10);
+    let newUser = new User({
+        username: username,
+        passwordHash: passwordHash,
+        pres: []
+    });
     return newUser.save();
 }
 
@@ -21,7 +27,7 @@ function authenticate(username, password, done) {
     findUserByName(username, (err, user) => {
         if (err) return done(err);
         if (!user) return done(null, false);
-        if (user.password !== password) return done(null, false);
+        if (!bcrypt.compareSync(password, user.passwordHash)) return done(null, false);
         return done(null, user);
     });
 }

@@ -8,11 +8,11 @@ const fsp = require('fs').promises;
 const path = require('path');
 
 /* get users listing. */
-router.get('/', function(req, res, next) {
+router.get('/', function(req, res) {
   res.redirect('/login');
 });
 
-router.get('/login', (req, res, next) => {
+router.get('/login', (req, res) => {
   res.render('login', { title: 'login page', message: null});
 });
 
@@ -38,11 +38,11 @@ router.post('/login', passport.authenticate('local', {
   }
 );
 
-router.get('/signup', (req, res, next) => {
+router.get('/signup', (req, res) => {
   res.render('signup', { title: 'sign up page', message: null});
 });
 
-router.post('/signup', async (req, res, next) => {
+router.post('/signup', async (req, res) => {
   let username = req.body.username;
   let password = req.body.password;
   let confirmPassword = req.body.confirmPassword;
@@ -61,11 +61,7 @@ router.post('/signup', async (req, res, next) => {
     });
   }
   try {
-    let user = await UserController.createUser({
-      username: username,
-      password: password,
-      pres: []
-    });
+    await UserController.createUser(username,password);
     passport.authenticate('local', {
       successfulRedirect: '/list'
     });
