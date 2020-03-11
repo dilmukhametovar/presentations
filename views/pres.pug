@@ -1,0 +1,27 @@
+doctype html
+head
+    title= title
+    link(rel='stylesheet' href='css/reveal.css')
+    link(rel='stylesheet' href='css/theme/white.css')
+body
+    .reveal
+        //.slides
+            //section(data-markdown
+                data-separator!="^\\n---\\n$"
+                data-separator-vertical!='^\\n--\\n$'
+                data-element-attributes!='{_\\s*?([^}]+?)}')
+                script(type="text/template")!= body
+
+        .slides
+            section(data-markdown
+                data-separator="^\\n---\\n$"
+                data-separator-vertical="^\\n--\\n$"
+                data-element-attributes="{_\\s*?([^}]+?)}")
+                script(type="text/template")!= body
+script(src='js/reveal.js')
+script(src="/plugin/markdown/marked.js")
+script(src="/plugin/markdown/markdown.js")
+script.
+    Reveal.initialize();
+    //data-separator!="^\\n---\\n$" data-separator-vertical!="^\\n--\\n$")
+ 

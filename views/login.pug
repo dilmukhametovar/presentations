@@ -1,0 +1,17 @@
+extends layout
+
+block content
+    div(class="row justify-content-md-center" style="margin-top: 30px")
+        div(class="col-md-4")
+            if message
+                div(class="alert #{messageClass}" role="alert")= message
+
+            form(method="POST" action="/login")
+                div(class="form-group")
+                    label(for="usernameInput") Username
+                    input(name="username" type="text" class="form-control" id="usernameInput" placeholder="Enter email")
+                div(class="form-group")
+                    label(for="passwordInput") Password
+                    input(name="password" type="password" class="form-control" id="passwordInput" placeholder="Password")
+                button(type="submit" class="btn btn-primary") Login
+            a(href='/signup' class='btn btn-primary my-1') Sign up

@@ -1,0 +1,25 @@
+extends layout
+
+block content
+    div(class="container col-md-6")
+        form(id='select-form' method='GET' action='/view' target='_blank')
+            div(class="form-group d-flex")
+                select(class="form-control" id='list' name='id' required)
+                    each item in list
+                        option(value= item.id)= item.name
+                button(type='submit' class='btn btn-primary'
+                    onclick='let select = document.getElementById("select-form");' +
+                    'select.setAttribute("action", "/edit");' +
+                    'select.setAttribute("method", "POST");') edit
+                button(type='submit' class='btn btn-primary'
+                    onclick='let select = document.getElementById("select-form");' +
+                    'select.setAttribute("action", "/delete");' +
+                    'select.setAttribute("method", "POST");' +
+                    'select.setAttribute("target", "_self")') delete
+                button(type='submit' class='btn btn-primary') view
+
+
+        form(id='input-form' method='POST' action='/create')
+            div(class="form-group d-flex")
+                input(type='text' class='form-control' name='name' placeholder='presentation name' required)
+                button(type='submit' class='btn btn-primary' value='submit') create

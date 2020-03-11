@@ -1,0 +1,21 @@
+extends layout
+
+block head
+    link(rel='stylesheet'
+        href='/css/simplemde.min.css')
+    script(src='/js/simplemde.min.js')
+    script(src='/js/presentations.js')
+
+block content
+    div(style='margin: 5px')
+        button(type='button' class='btn btn-outline-primary' onclick='editor.left()' style='margin: 5px')
+            span(class='fa fa-arrow-left' aria-hidden='true')
+        button(type='button' class='btn btn-outline-primary' onclick='editor.right()' style='margin: 5px')
+            span(class='fa fa-arrow-right')
+        button(type='button' class='btn btn-outline-primary' onclick='editor.save()' style='margin: 5px') save
+        button(type='button' class='btn btn-outline-primary' onclick='editor.view()' style='margin: 5px') view
+        button(type='button' class='btn btn-outline-primary' onclick='editor.delete()' style='margin: 5px') delete
+
+    input(id='id' hidden type='text' value= id)
+    textarea(id='editor')= text
+    script const editor = new Editor(document.getElementById('editor'));
